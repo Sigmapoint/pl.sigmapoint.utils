@@ -27,7 +27,7 @@ ToastUtil - faster and simpler Toast maker.
 
 ## History
 
-It is a firs release
+It is a first release
 
 ## License
 
