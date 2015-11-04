@@ -8,7 +8,7 @@ public class PersistanceUtil {
     private final Context context;
     private String sharedPrefName;
 
-    PersistanceUtil(Context context, String sharedPrefName) {
+    public PersistanceUtil(Context context, String sharedPrefName) {
         this.context = context;
         this.sharedPrefName = sharedPrefName;
     }
@@ -66,7 +66,7 @@ public class PersistanceUtil {
     }
 
     public void remove(String key) {
-        SharedPreferencesUtil.getPreferences(context, sharedPrefName).edit().remove(key);
+        SharedPreferencesUtil.getPreferences(context, sharedPrefName).edit().remove(key).commit();
     }
 
     public String getSharedPrefName() {

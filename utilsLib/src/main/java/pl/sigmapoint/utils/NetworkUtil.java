@@ -6,6 +6,9 @@ import android.net.NetworkInfo;
 
 public class NetworkUtil {
 
+    /**
+     * Requires android.permission.ACCESS_NETWORK_STATE permission in Manifest
+     */
     public static boolean haveNetworkConnection(Context context) {
         boolean haveConnectedWifi = false;
         boolean haveConnectedMobile = false;
@@ -23,6 +26,9 @@ public class NetworkUtil {
         return haveConnectedWifi || haveConnectedMobile;
     }
 
+    /**
+     * Requires android.permission.ACCESS_NETWORK_STATE permission in Manifest
+     */
     public static boolean haveWifiConnection(Context context) {
         boolean haveConnectedWifi = false;
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

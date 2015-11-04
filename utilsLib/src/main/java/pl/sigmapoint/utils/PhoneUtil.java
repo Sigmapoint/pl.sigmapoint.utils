@@ -17,6 +17,7 @@ public class PhoneUtil {
 
     /**
      * Get own phone number
+     * Requires android.permission.READ_PHONE_STATE permission in Manifest
      *
      * @param context application context
      * @return String with phone number
