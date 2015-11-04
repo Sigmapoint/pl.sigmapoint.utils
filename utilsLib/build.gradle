@@ -1,29 +1,5 @@
 apply plugin: 'com.android.library'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'sigmapoint-util'
-
-    publishedGroupId = 'pl.sugmapoint.util'
-    libraryName = 'SigmapointUtil'
-    artifact = 'sigmapoint-util'
-
-    libraryDescription = 'Common uses utils'
-
-    siteUrl = 'https://sigmapoint.pl'
-    gitUrl = 'https://github.com/Sigmapoint/pl.sigmapoint.utils.git'
-
-    libraryVersion = '1.0.0'
-
-    developerId = 'sigmapoint'
-    developerName = 'Sigmapoint'
-    developerEmail = 'kontakt@sigmapoint.pl'
-
-    licenseName = 'MIT'
-    licenseUrl = 'https://github.com/Sigmapoint/pl.sigmapoint.utils/blob/master/LICENSE.txt'
-    allLicenses = ["MIT"]
-}
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -45,4 +21,121 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.1.0'
+}
+
+//jcenter
+
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+def bintrayRepo = 'maven'
+def bintrayName = 'sigmapoint-util'
+
+def publishedGroupId = 'pl.sigmapoint.utils'
+def libraryName = 'SigmapointUtil'
+def artifact = 'sigmapoint-util'
+
+def libraryDescription = 'Common uses utils'
+
+def siteUrl = 'https://sigmapoint.pl'
+def gitUrl = 'https://github.com/Sigmapoint/pl.sigmapoint.utils.git'
+
+def libraryVersion = '1.0.0'
+
+def developerId = 'sigmapoint'
+def developerName = 'sigmapoint'
+def developerEmail = 'kontakt@sigmapoint.pl'
+
+def licenseName = 'MIT'
+def licenseUrl = 'https://github.com/Sigmapoint/pl.sigmapoint.utils/blob/master/LICENSE.txt'
+def allLicenses = ["MIT"]
+def group = publishedGroupId
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId publishedGroupId
+                artifactId Artifact
+
+                // Add your description here
+                name libraryName
+                description libraryDescription
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
+version = libraryVersion
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase = properties.getProperty("bintray.gpg.password")
+                //Optional. The passphrase for GPG signing'
+            }
+        }
+    }
 }
