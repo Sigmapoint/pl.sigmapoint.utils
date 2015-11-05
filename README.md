@@ -7,7 +7,7 @@ This is a set of usefull tools like PersistanceUtil for simpler and faster savin
 
 TODO: Wait for jcenter
 
-Many of util classes have static method, but e.g. Persistanecr util have only public method, not static. 
+Many of util classes have static method, but e.g. PersistanceUtil have only public method, not static. 
 This verison contains:
 
 ```
