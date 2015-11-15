@@ -5,7 +5,7 @@ This is a set of usefull tools like PersistanceUtil for simpler and faster savin
 
 ## Usage
 
-TODO: Wait for jcenter
+Library is available in jcenter. In your gradle file add dependency to ```pl.sigmapoint.utils:sigmapoint-utils:1.0.1```
 
 Many of util classes have static method, but e.g. PersistanceUtil have only public method, not static. 
 This verison contains:
