@@ -31,14 +31,14 @@ def bintrayName = 'sigmapoint-utils'
 
 def publishedGroupId = 'pl.sigmapoint.utils'
 def libraryName = 'SigmapointUtils'
-def artifact = 'Utils'
+def artifact = 'sigmapoint-utils'
 
 def libraryDescription = 'Common uses utils'
 
 def siteUrl = 'https://sigmapoint.pl'
 def gitUrl = 'https://github.com/Sigmapoint/pl.sigmapoint.utils.git'
 
-def libraryVersion = '1.0.0'
+def libraryVersion = '1.0.1'
 
 def developerId = 'sigmapoint'
 def developerName = 'sigmapoint'
